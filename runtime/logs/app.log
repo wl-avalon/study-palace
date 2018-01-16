@@ -1,0 +1,694 @@
+2018-01-15 14:12:48 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'Missing required arguments: startUrl' in /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php:173
+Stack trace:
+#0 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(51): yii\console\Controller->bindActionParams(Object(yii\base\InlineAction), Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#2 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#3 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#4 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#7 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#8 {main}
+2018-01-15 14:12:48 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516025568.7806
+    'REQUEST_TIME' => 1516025568
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+    ]
+    'argc' => 2
+]
+2018-01-15 14:35:40 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'preg_split(): Delimiter must not be alphanumeric or backslash' in /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php:36
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'preg_split(): D...', '/Users/wzj-dev/...', 36, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(36): preg_split('\\bWord\\(1,.)', '<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#2 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(15): app\services\handle91\handleTopic::handleXueDuan('<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic::handleResponse('<!DOCTYPE html>...')
+#4 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#11 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#13 {main}
+2018-01-15 14:35:38 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516026938.663
+    'REQUEST_TIME' => 1516026938
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-15 14:36:17 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'preg_split(): Delimiter must not be alphanumeric or backslash' in /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php:36
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'preg_split(): D...', '/Users/wzj-dev/...', 36, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(36): preg_split('\\bWord\\B', '<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#2 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(15): app\services\handle91\handleTopic::handleXueDuan('<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic::handleResponse('<!DOCTYPE html>...')
+#4 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#11 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#13 {main}
+2018-01-15 14:36:16 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516026976.094
+    'REQUEST_TIME' => 1516026976
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-15 14:37:03 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'preg_split(): Delimiter must not be alphanumeric or backslash' in /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php:36
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'preg_split(): D...', '/Users/wzj-dev/...', 36, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(36): preg_split('\\bWord\\B', '<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#2 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(15): app\services\handle91\handleTopic::handleXueDuan('<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic::handleResponse('<!DOCTYPE html>...')
+#4 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#11 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#13 {main}
+2018-01-15 14:37:02 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516027022.7512
+    'REQUEST_TIME' => 1516027022
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-15 14:41:46 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'preg_match_all(): Compilation failed: unmatched parentheses at offset 13' in /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php:36
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'preg_match_all(...', '/Users/wzj-dev/...', 36, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(36): preg_match_all('/\\baclick\\(1,*)...', '<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#2 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(15): app\services\handle91\handleTopic::handleXueDuan('<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic::handleResponse('<!DOCTYPE html>...')
+#4 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#11 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#13 {main}
+2018-01-15 14:41:45 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516027305.5574
+    'REQUEST_TIME' => 1516027305
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-15 14:43:55 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'preg_match(): Compilation failed: unmatched parentheses at offset 13' in /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php:37
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'preg_match(): C...', '/Users/wzj-dev/...', 37, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(37): preg_match('/\\baclick\\(1,*)...', '<dl>\n\t\t\t\t\t\t\t\t\t<...', Array)
+#2 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(15): app\services\handle91\handleTopic::handleXueDuan('<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic::handleResponse('<!DOCTYPE html>...')
+#4 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#11 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#13 {main}
+2018-01-15 14:43:54 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516027434.109
+    'REQUEST_TIME' => 1516027434
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-15 14:51:40 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'preg_match_all(): Unknown modifier 'd'' in /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php:37
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'preg_match_all(...', '/Users/wzj-dev/...', 37, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(37): preg_match_all('/\\baclick\\(1,*<...', '<dl>\n\t\t\t\t\t\t\t\t\t<...', Array)
+#2 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(15): app\services\handle91\handleTopic::handleXueDuan('<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic::handleResponse('<!DOCTYPE html>...')
+#4 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#11 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#13 {main}
+2018-01-15 14:51:38 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516027898.2925
+    'REQUEST_TIME' => 1516027898
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-15 15:04:42 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'preg_match_all(): No ending delimiter '/' found' in /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php:37
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'preg_match_all(...', '/Users/wzj-dev/...', 37, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(37): preg_match_all('/\\baclick\\b', '<dl>\n\t\t\t\t\t\t\t\t\t<...', Array)
+#2 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(15): app\services\handle91\handleTopic::handleXueDuan('<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic::handleResponse('<!DOCTYPE html>...')
+#4 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#11 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#13 {main}
+2018-01-15 15:04:41 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516028681.6743
+    'REQUEST_TIME' => 1516028681
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-16 13:03:19 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'Invalid argument supplied for foreach()' in /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php:41
+Stack trace:
+#0 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(41): yii\base\ErrorHandler->handleError(2, 'Invalid argumen...', '/Users/wzj-dev/...', 41, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(16): app\services\handle91\handleTopic::handleXueDuan('<dl>\n\t\t\t\t\t\t\t\t\t<...')
+#2 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic::handleResponse('<!DOCTYPE html>...')
+#3 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#4 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#11 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#12 {main}
+2018-01-16 13:03:18 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516107798.4664
+    'REQUEST_TIME' => 1516107798
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-16 13:24:23 [-][-][-][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\commands\MainController::getPopInfoBoxHtml()' in /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Component.php:294
+Stack trace:
+#0 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(24): yii\base\Component->__call('getPopInfoBoxHt...', Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/services/handle91/handleTopic.php(24): app\commands\MainController->getPopInfoBoxHtml()
+#2 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(21): app\services\handle91\handleTopic->handleResponse('<!DOCTYPE html>...')
+#3 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#4 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#10 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#11 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#12 {main}
+2018-01-16 13:24:22 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516109062.4691
+    'REQUEST_TIME' => 1516109062
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id/3,17'
+    ]
+    'argc' => 3
+]
+2018-01-16 14:20:02 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'Invalid argument supplied for foreach()' in /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php:32
+Stack trace:
+#0 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(32): yii\base\ErrorHandler->handleError(2, 'Invalid argumen...', '/Users/wzj-dev/...', 32, Array)
+#1 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(20): app\commands\MainController->curlOne('http://www.91ta...')
+#2 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#4 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#10 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(16): yii\base\Application->run()
+#11 {main}
+2018-01-16 14:20:00 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.xrdFJUs7Gj/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.41yxPCSGao/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186a8'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:FC58F8E9-6A0E-44BE-9F76-1019F9DEC2C7'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/assets'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{%F{161}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1516112400.4588
+    'REQUEST_TIME' => 1516112400
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id'
+    ]
+    'argc' => 3
+]
