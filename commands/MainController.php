@@ -7,11 +7,10 @@
  */
 
 namespace app\commands;
-use app\components\Format;
 use app\components\MockData;
-use app\library\Request;
 use app\services\daemon\SpiderService;
 use yii\console\Controller;
+use ploanframework\services\passport\PassportService;
 
 class MainController extends Controller
 {
