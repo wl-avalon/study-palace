@@ -7,6 +7,7 @@
  */
 
 namespace app\commands;
+use app\apis\IDAllocApi;
 use app\components\MockData;
 use app\services\daemon\SpiderService;
 use yii\console\Controller;

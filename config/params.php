@@ -2,8 +2,8 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'idgent' => [
-        'domain'    => 'http://127.0.0.1',
+    'idAlloc' => [
+        'domain'    => 'http://123.56.156.172:4021',
         'apis' => [
             'nextId'    => '/nextId',      //取一个ID
             'batch'     => '/batch',        //取多个ID

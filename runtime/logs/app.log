@@ -1635,3 +1635,67 @@ Stack trace:
     ]
     'argc' => 3
 ]
+2018-01-31 18:12:31 [-][-][-][error][Error] Error: Class 'rrxframework\util\DictUtil' not found in /Users/wzj-dev/Documents/source_code/study-palace/apis/IDAllocApi.php:101
+Stack trace:
+#0 /Users/wzj-dev/Documents/source_code/study-palace/apis/IDAllocApi.php(66): app\apis\IDAllocApi::commonBatchIdgencurl(Array, 'batch')
+#1 /Users/wzj-dev/Documents/source_code/study-palace/commands/MainController.php(19): app\apis\IDAllocApi::batch(3)
+#2 [internal function]: app\commands\MainController->actionIndex('http://www.91ta...')
+#3 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#4 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#5 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Controller.php(135): yii\base\Controller->runAction('index', Array)
+#6 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('index', Array)
+#7 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('main/index', Array)
+#8 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('main/index', Array)
+#9 /Users/wzj-dev/Documents/source_code/study-palace/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#10 /Users/wzj-dev/Documents/source_code/study-palace/console/index.php(30): yii\base\Application->run()
+#11 {main}
+2018-01-31 18:12:31 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:BB99ADB7-5CCD-4AB7-88A9-2546DECC0970'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.W98hIBQeIe/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.EMMpcMFNF7/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186bb'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/wzj-dev:/usr/local/Cellar/php70/7.0.27_19/bin:/usr/local/go/bin://Users/wzj-dev/Documents/source_code/go-path/bin:/usr/local/Cellar/php70/7.0.27_19/bin:/usr/local/opt/go/libexec/bin://Users/wzj-dev/Documents/source_code/go-path/bin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:BB99ADB7-5CCD-4AB7-88A9-2546DECC0970'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'GOROOT_BOOTSTRAP' => '/usr/local/go-bootstrap1.4'
+    'GOPATH' => '/Users/wzj-dev/Documents/source_code/go-path'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{%F{166}%} ●%{%F{118}%} ●%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/local/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1517393551.2528
+    'REQUEST_TIME' => 1517393551
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id'
+    ]
+    'argc' => 3
+]
