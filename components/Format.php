@@ -185,7 +185,7 @@ class Format
                 case "【答案】":{$lastKey = "answer";break;}
                 case "【解析】":{$lastKey = "analysis";break;}
                 case "【知识点】":{$lastKey = "knowledge_point";break;}
-                case "【题点】":{$lastKey = "question_poin";break;}
+                case "【题点】":{$lastKey = "question_point";break;}
                 case "【难易度】":{$lastKey = "difficulty";break;}
                 case "【日期】":{$lastKey = "date";break;}
             }
