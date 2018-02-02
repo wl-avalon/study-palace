@@ -6,41 +6,100 @@
  * Time: 下午9:51
  */
 namespace app\services\daemon;
+use app\apis\IDAllocApi;
 use app\components\Format;
+use app\components\SPLog;
+use app\constants\QuestionDetailBeanConst;
 use app\library\Request;
+use app\models\beans\NodeListBean;
+use app\models\question\QuestionDetailModel;
+use app\models\questionConst\NodeListModel;
 
 class SpiderService
 {
-    public static function execute(){
-        $startUrl   = "http://www.91taoke.com/Juanzi/index/d/1/id";
-        $allEnum    = self::getAllEnum($startUrl);
+    public static function createNodeConst($allEnum){
+        $gradeKey       = 0;
+        $subjectKey     = 0;
+        $versionKey     = 0;
+        $moduleKey      = 0;
+        $gradeList      = [];
+        $subjectList    = [];
+        $versionList    = [];
+        $moduleList     = [];
         foreach($allEnum as $xueDuanIndex => $xueKeData){
-            $xueKeList = $xueKeData['data'];
+            $gradeChinese   = $xueKeData['value'];
+            $gradeList[]    = [
+                'parentNode'    => '',
+                'key'           => $gradeKey,
+                'value'         => $gradeChinese
+            ];
+            $xueKeList      = $xueKeData['data'];
             foreach($xueKeList as $xueKeIndex => $banBenData){
-                $banBenList = $banBenData['data'];
+                $subjectChinese = $banBenData['value'];
+                $subjectList[]  = [
+                    'gradeNode' => $gradeKey,
+                    'key'       => $subjectKey,
+                    'value'     => $subjectChinese,
+                ];
+                $banBenList     = $banBenData['data'];
                 foreach($banBenList as $banBenIndex => $moduleData){
-                    $moduleList = $moduleData['data'];
-                    foreach($moduleList as $moduleIndex => $module){
-                        $p = 0;
-                        do{
-                            usleep(100000);
-                            $url = "http://www.91taoke.com/Juanzi/ajaxlist?id={$xueDuanIndex},{$xueKeIndex},{$banBenIndex},{$moduleIndex}&zjid=0&tixing=0&nandu=0&leixing=0&p={$p}";
-                            $p++;
-                            $questInfo = SpiderService::getQuestion($url);
-                            if(empty($questInfo)){
-                                break;
-                            }
-                        }while(true);
+                    $versionChinese = $moduleData['value'];
+                    $versionList[]  = [
+                        'subjectNode'   => $subjectKey,
+                        'key'           => $versionKey,
+                        'value'         => $versionChinese,
+                    ];
+                    $mokuaiList = $moduleData['data'];
+                    foreach($mokuaiList as $moduleIndex => $module){
+                        $moduleChinese  = $module['value'];
+                        $moduleList[]   = [
+                            'versionNode'   => $versionKey,
+                            'key'           => $moduleKey,
+                            'value'         => $moduleChinese,
+                        ];
+                        self::createNodeList($gradeKey, $subjectKey, $versionKey, $moduleKey, $module['data']['nodeList']);
+                        $moduleKey++;
                     }
+                    $versionKey++;
                 }
+                $subjectKey++;
             }
+            $gradeKey++;
         }
+//        exit;
+
+//        foreach($gradeList as $item){
+//            $lastNode   = intval($item['parentNode']);
+//            $key        = $item['key'];
+//            $value      = $item['value'];
+//            echo "['parentNode' => {$lastNode}, 'key' => {$key}, 'value' => '{$value}'],\n";
+//        }
+//        echo "---------------------------------\n";
+//        foreach($subjectList as $item){
+//            $lastNode   = intval($item['gradeNode']);
+//            $key        = $item['key'];
+//            $value      = $item['value'];
+//            echo "['parentNode' => {$lastNode}, 'key' => {$key}, 'value' => '{$value}'],\n";
+//        }
+//        echo "---------------------------------\n";
+//        foreach($versionList as $item){
+//            $lastNode   = intval($item['subjectNode']);
+//            $key        = $item['key'];
+//            $value      = $item['value'];
+//            echo "['subjectNode' => {$lastNode}, 'key' => {$key}, 'value' => '{$value}'],\n";
+//        }
+//        echo "---------------------------------\n";
+//        foreach($moduleList as $item){
+//            $lastNode   = intval($item['versionNode']);
+//            $key        = $item['key'];
+//            $value      = $item['value'];
+//            echo "['versionNode' => {$lastNode}, 'key' => {$key}, 'value' => '{$value}'],\n";
+//        }
     }
 
     public static function getAllEnum($url, $nowLevel = 1){
         usleep(100000);
         $response   = Request::curl($url);
-
         if($nowLevel == 5){
             $tiXingMap  = Format::getTiXingMap($response);
             $nanDuMap   = Format::getNanDuMap($response);
@@ -55,18 +114,12 @@ class SpiderService
         }
         $record = [];
         foreach($levelList as $level => $levelValue){
-            if($level == 5){
-                return $record;
-            }
-            if($level == 11){
-                return $record;
-            }
             if($nowLevel == 1){
                 $urlTemp = rtrim($url, '/') . "/{$level}";
             }else{
                 $urlTemp = "{$url},{$level}";
             }
-            echo "{$level},{$levelValue}\n";
+            SPLog::log("{$level},{$levelValue}\n");
             $record[$level] = [
                 'key'   => $level,
                 'value' => $levelValue,
@@ -105,5 +158,54 @@ class SpiderService
             ];
         }
         return $questionListRes;
+    }
+
+    public static function checkRetry($question, $xueKeChinese){
+        $content        = "";
+        $content        .= $question['questionRemark'];
+//        $content        .= $question['resultRemark']; //暂时没用
+        $questionList   = $question['questList'];
+
+        foreach($questionList as $questionItem){
+            $content .= $questionItem['question'];
+            foreach($questionItem['result'] as $key => $value){
+                $content .= "key:{$key},value{$value}";
+            }
+        }
+        $md5 = md5($content);
+        $dbName = QuestionDetailBeanConst::$subjectChineseMapToEnum[trim($xueKeChinese)];
+        $questionDetailBeanList = QuestionDetailModel::queryQuestionListByMD5($md5, $dbName);
+        if($questionDetailBeanList){
+            return true;
+        }
+
+        foreach($questionDetailBeanList as $questionDetailBean){
+            $contentTemp    = "";
+            $contentTemp    .= $questionDetailBean->getQuestionRemark();
+//            $contentTemp    .= $questionDetailBean->get,
+        }
+    }
+
+    public static function createNodeList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeList){
+        $uuidList = explode(',', IDAllocApi::batch(count($nodeList))['data']);
+        $i = 0;
+        $parentNodeID = "";
+        foreach($nodeList as $node){
+            $nodeBeanData = [
+                'uuid'              => $uuidList[$i++],
+                'grade'             => $gradeKey,
+                'subject'           => $subjectKey,
+                'version'           => $versionKey,
+                'module'            => $moduleKey,
+                'node_key'          => $node['id'],
+                'node_value'        => $node['name'],
+                'parent_node_id'    => strval($parentNodeID),
+            ];
+            $parentNodeID = strval($node['id']);
+            $nodeListBean = new NodeListBean($nodeBeanData);
+            $insertResult = NodeListModel::insertOneRecord($nodeListBean);
+            SPLog::log("{$moduleKey} --------------- {$insertResult} \n");
+            unset($nodeListBean);
+        }
     }
 }

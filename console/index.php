@@ -29,6 +29,7 @@ defined('SP_CONF_FILE') or define('SP_CONF_FILE', '/home/saber/study-palace/serv
 try {
     (new yii\console\Application($config))->run();
 } catch (Exception $e) {
+    var_dump($e);exit;
     header("http/1.1 404 Not Found");
     header("status: 404 Not Found");
 }

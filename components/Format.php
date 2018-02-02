@@ -23,12 +23,9 @@ class Format
         $valueList      = $matchStr[3];
         $tabLevelMap = [];
         foreach($tabLevelList as $index => $level){
-            $tabLevelMap[$level][$keyList[$index]] = $valueList[$index];
+            $tabLevelMap[$level][$keyList[$index]] = $valueList[$index] ?? [];
         }
-        if($chooseLevel == 5){
-            var_dump($tabLevelMap);exit;
-        }
-        return $tabLevelMap[$chooseLevel];
+        return $tabLevelMap[$chooseLevel] ?? [];
     }
 
     /**
@@ -72,10 +69,11 @@ class Format
         preg_match_all("/\bvar zNodes = (\[[^\]]*?\])\B/", $response, $matchStr);
         $nodeList   = $matchStr[1][0];
 
-        $nodeList   = str_replace("'", '"', $nodeList);
-        $nodeList   = str_replace("id", '"id"', $nodeList);
-        $nodeList   = str_replace("pId", '"pId"', $nodeList);
-        $nodeList   = str_replace("name", '"name"', $nodeList);
+        $nodeList   = preg_replace('/"\s*?([\S\s]*?)\s*?"/', '“\1”', $nodeList);
+        $nodeList   = preg_replace("/'\s*?([\S\s]*?)\s*?'/", '"\1"', $nodeList);
+        $nodeList   = str_replace(" id:", '"id":', $nodeList);
+        $nodeList   = str_replace(",pId:", ',"pId":', $nodeList);
+        $nodeList   = str_replace(",name:", ',"name":', $nodeList);
         $nodeList   = json_decode($nodeList, true);
         return $nodeList;
     }

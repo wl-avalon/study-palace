@@ -2,3 +2,6 @@
 .idea*
 ploanframework/
 rrxframework/
+logs/
+test
+mock_data

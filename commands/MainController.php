@@ -8,39 +8,30 @@
 
 namespace app\commands;
 use app\apis\IDAllocApi;
+use app\components\Format;
 use app\components\MockData;
+use app\components\SPLog;
+use app\library\Request;
 use app\services\daemon\SpiderService;
 use yii\console\Controller;
-use ploanframework\services\passport\PassportService;
 
 class MainController extends Controller
 {
     public function actionIndex($startUrl){
+//        $this->test();exit;
         set_time_limit(0);
-//        $requestUrl = $startUrl;
-//        $record = $this->curlOne($requestUrl);
+//        $a = IDAllocApi::batch(10);
+//        var_dump($a);exit;
+//        $startUrl   = "http://www.91taoke.com/Juanzi/index/d/1/id";
+//        $record    = SpiderService::getAllEnum($startUrl);
+//        echo json_encode($record);
+//        exit;
         $record = MockData::getTestRecord();
-        $record = json_decode($record, true);
-        foreach($record as $xueDuanIndex => $xueKeData){
-            $xueKeList = $xueKeData['data'];
-            foreach($xueKeList as $xueKeIndex => $banBenData){
-                $banBenList = $banBenData['data'];
-                foreach($banBenList as $banBenIndex => $moduleData){
-                    $moduleList = $moduleData['data'];
-                    foreach($moduleList as $moduleIndex => $module){
-                        $p = 0;
-                        do{
-                            usleep(100000);
-                            $url = "http://www.91taoke.com/Juanzi/ajaxlist?id={$xueDuanIndex},{$xueKeIndex},{$banBenIndex},{$moduleIndex}&zjid=0&tixing=0&nandu=0&leixing=0&p={$p}";
-                            $p++;
-                            $questInfo = SpiderService::getQuestion($url);
-                            if(empty($questInfo)){
-                                break;
-                            }
-                        }while(true);
-                    }
-                }
-            }
-        }
+        SpiderService::createNodeConst($record);
+    }
+
+    public function test(){
+        $response   = Request::curl("http://www.91taoke.com/Juanzi/index/id/3,13,53,1026421");
+        Format::getNodeList($response);
     }
 }
