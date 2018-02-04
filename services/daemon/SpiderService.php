@@ -191,6 +191,9 @@ class SpiderService
         $i = 0;
         $parentNodeID = "";
         foreach($nodeList as $node){
+            if($node['id'] != 1027075){
+                continue;
+            }
             $nodeBeanData = [
                 'uuid'              => $uuidList[$i++],
                 'grade'             => $gradeKey,
@@ -206,6 +209,7 @@ class SpiderService
             $insertResult = NodeListModel::insertOneRecord($nodeListBean);
             SPLog::log("{$moduleKey} --------------- {$insertResult} \n");
             unset($nodeListBean);
+            exit;
         }
     }
 }

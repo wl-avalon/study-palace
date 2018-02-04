@@ -13,6 +13,7 @@ class Request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 2000);
         $content = curl_exec($ch);
         curl_close($ch);
         return $content;

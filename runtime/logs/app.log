@@ -1873,3 +1873,56 @@ Stack trace:
     ]
     'argc' => 3
 ]
+2018-02-04 14:46:33 [-][-][-][warning][application] msg[msg[HttpUtil->checkResponse] curl_errno[28] curl_erorr_msg[Connection timed out after 101 milliseconds] http_code[0] total_time[0.001449] namelookup_time[2.7E-5] connect_time[0] starttransfer_time[0] pretransfer_time[0] primary_ip[] primary_port[0] local_ip[] local_port[0] redirect_count[0] redirect_time[0] url[http://123.56.156.172:4021/batch?count=84] msg[Request for URL timeout.] ] errno[0] data[N;]
+2018-02-04 14:46:33 [-][-][-][warning][application] msg[] errno[-1] data[a:10:{s:11:"error_level";s:4:"warn";s:6:"errmsg";s:13:"service_error";s:12:"service_name";s:7:"service";s:10:"error_type";i:-1;s:13:"service_errno";i:28;s:14:"service_errmsg";s:48:"net::Connection timed out after 101 milliseconds";s:11:"request_uri";s:41:"http://123.56.156.172:4021/batch?count=84";s:13:"request_param";s:0:"";s:13:"response_body";s:0:"";s:8:"ext_info";s:46:"{"http_code":0,"retry":0,"error_level":"warn"}";}]
+2018-02-04 14:46:33 [-][-][-][warning][application] msg[retry request curl url[http://123.56.156.172:4021/batch?count=84] retrytimes[1]] errno[0] data[N;]
+2018-02-04 14:45:53 [-][-][-][info][application] $_SERVER = [
+    'TERM_SESSION_ID' => 'w0t0p0:BB99ADB7-5CCD-4AB7-88A9-2546DECC0970'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.W98hIBQeIe/Listeners'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.EMMpcMFNF7/Render'
+    'COLORFGBG' => '7;0'
+    'ITERM_PROFILE' => 'Default'
+    'XPC_FLAGS' => '0x0'
+    'LANG' => 'zh_CN.UTF-8'
+    'PWD' => '/Users/wzj-dev/Documents/source_code/study-palace'
+    'SHELL' => '/bin/zsh'
+    'SECURITYSESSIONID' => '186bb'
+    'TERM_PROGRAM_VERSION' => '3.1.beta.4'
+    'TERM_PROGRAM' => 'iTerm.app'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/wzj-dev:/usr/local/Cellar/php70/7.0.27_19/bin:/usr/local/go/bin://Users/wzj-dev/Documents/source_code/go-path/bin:/usr/local/Cellar/php70/7.0.27_19/bin:/usr/local/opt/go/libexec/bin://Users/wzj-dev/Documents/source_code/go-path/bin'
+    'COLORTERM' => 'truecolor'
+    'COMMAND_MODE' => 'unix2003'
+    'TERM' => 'xterm-256color'
+    'HOME' => '/Users/wzj-dev'
+    'TMPDIR' => '/var/folders/pn/ty0dpx6x16qbb6ttzg191ylc0000gp/T/'
+    'USER' => 'wzj-dev'
+    'XPC_SERVICE_NAME' => '0'
+    'LOGNAME' => 'wzj-dev'
+    '__CF_USER_TEXT_ENCODING' => '0x1F6:0x19:0x34'
+    'ITERM_SESSION_ID' => 'w0t0p0:BB99ADB7-5CCD-4AB7-88A9-2546DECC0970'
+    'SHLVL' => '1'
+    'OLDPWD' => '/Users/wzj-dev/Documents/source_code/study-palace/models'
+    'ZSH' => '/Users/wzj-dev/.oh-my-zsh'
+    'PAGER' => 'less'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'zh_CN.UTF-8'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'GOROOT_BOOTSTRAP' => '/usr/local/go-bootstrap1.4'
+    'GOPATH' => '/Users/wzj-dev/Documents/source_code/go-path'
+    'vcs_info_msg_0_' => ' on %{%F{81}%}master%{[00m%}'
+    'vcs_info_msg_1_' => ''
+    '_' => '/usr/local/bin/php'
+    'PHP_SELF' => 'console/index.php'
+    'SCRIPT_NAME' => 'console/index.php'
+    'SCRIPT_FILENAME' => 'console/index.php'
+    'PATH_TRANSLATED' => 'console/index.php'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1517726753.6259
+    'REQUEST_TIME' => 1517726753
+    'argv' => [
+        0 => 'console/index.php'
+        1 => 'main/index'
+        2 => 'http://www.91taoke.com/Juanzi/index/d/1/id'
+    ]
+    'argc' => 3
+]
