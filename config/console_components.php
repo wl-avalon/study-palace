@@ -4,7 +4,8 @@ return [
         'targets' => [
             [
                 'class' => 'yii\log\FileTarget',
-                'levels' => 'trace,info,profile,warning,error',
+                'levels' => ['error', 'warning'],
+//                'levels' => ['trace','info','profile','warning','error'],
             ],
         ],
     ],
