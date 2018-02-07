@@ -14,10 +14,7 @@ use app\services\daemon\spider\GetProxyIPListService;
 
 class Proxy
 {
-    private static $lastTime    = 0;
-    private static $ipList      = [];
     private static $selfIpList  = [];
-    private static $orderID     = '866000470015206388';
     private static $checkProxyIPOption = [
         CURLOPT_URL             => 'www.91taoke.com',   //请求的网址
         CURLOPT_HEADER          => 1,                   //返回http头信息
@@ -41,13 +38,14 @@ class Proxy
     }
 
     public static function delSelfIP($ipPort){
+        SPLog::log("IP{$ipPort}请求失败,删除");
         unset(self::$selfIpList[$ipPort]);
     }
 
     private static function getSelfProxyIPList(){
         SPLog::log("开始获取代理IP列表");
         $ipList = GetProxyIPListService::getProxyIPList();
-        SPLog::log("获取代理IP列表结束,列表为:" . json_encode($ipList));
+        SPLog::log("获取代理IP列表结束,列表为:" . implode(',', $ipList));
         while(count($ipList) > 0){
             $mh = curl_multi_init();
             $proxyIPList = array_splice($ipList, 0, 200);
@@ -77,9 +75,9 @@ class Proxy
             foreach($chSet as $ipPort => $ch){
                 $requestCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 curl_multi_remove_handle($mh, $chSet[$ipPort]);
-//                if($requestCode != "200"){
-//                    continue;
-//                }
+                if($requestCode != "200"){
+                    continue;
+                }
                 self::$selfIpList[] = $ipPort;
             }
             curl_multi_close($mh);

@@ -18,7 +18,7 @@ class GetProxyIPListService
         $ipPortList = [];
         $i = 1;
         $daiLiName = 'xi_ci';
-        while(count($ipPortList) <= 200){
+        while(count($ipPortList) <= 2000){
             $html = self::getDaiLi($daiLiName, $i++);
             $ipPortListTemp = self::getIPAndPort($daiLiName, $html);
             $ipPortList     = array_merge($ipPortList, $ipPortListTemp);
