@@ -18,6 +18,7 @@ class SPLog
             $logFilePath = dirname(__DIR__) . "/logs/sp.log";
             self::$logFile = fopen($logFilePath, 'a');
         }
+        $test .= "\n";
         fwrite(self::$logFile, $test);
     }
 }

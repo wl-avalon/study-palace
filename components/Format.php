@@ -203,4 +203,9 @@ class Format
         $temp           = str_replace("</ol>", "", $temp);
         return $temp;
     }
+
+    public static function getQuestionMd5($question){
+        $content = $question['questionRemark'] . $question['resultRemark'] . json_encode($question['questList']);
+        return md5($content);
+    }
 }

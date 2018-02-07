@@ -28,7 +28,7 @@ class QuestionRecordBean
         $this->uuid                 = $input['uuid']                ?? null;
         $this->question_md5         = $input['question_md5']        ?? null;
         $this->question_creator_id  = $input['question_creator_id'] ?? null;
-        $this->question_remark      = $input['question_remark   ']  ?? null;
+        $this->question_remark      = $input['question_remark']     ?? null;
         $this->work_status          = $input['work_status']         ?? null;
         $this->work_content         = $input['work_content']        ?? null;
         $this->del_status           = $input['del_status']          ?? null;
@@ -42,7 +42,7 @@ class QuestionRecordBean
             'uuid'                  => $this->uuid,
             'question_md5'          => $this->question_md5,
             'question_creator_id'   => $this->question_creator_id,
-            'question_remark   '    => $this->question_remark   ,
+            'question_remark'       => $this->question_remark,
             'work_status'           => $this->work_status,
             'work_content'          => $this->work_content,
             'del_status'            => $this->del_status,

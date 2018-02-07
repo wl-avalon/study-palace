@@ -43,8 +43,7 @@ class QuestionRecordModel
      */
     public static function queryQuestionListByMD5($md5, $name){
         $aWhere = [
-            'AND',
-            ['=', 'question_md5', $md5],
+            'question_md5' => $md5,
         ];
         try{
             $aData = CommonModel::createSelectCommand(CommonModel::getQuestionDb($name), $aWhere, self::TABLE_NAME)->queryAll();
@@ -52,5 +51,20 @@ class QuestionRecordModel
             throw new \Exception('select db error,condition is:' . json_encode($aWhere));
         }
         return self::convertDbToBeans($aData);
+    }
+
+    public static function updateQuestionWorkContent(QuestionRecordBean $question, $name){
+        $aWhere = [
+            'id'    => $question->getID(),
+        ];
+        $aUpdate = [
+            'work_content'  => $question->getWorkContent(),
+        ];
+        try{
+            $updateRowNum = CommonModel::getQuestionDb($name)->createCommand()->update(self::TABLE_NAME, $aUpdate, $aWhere)->execute();
+        }catch(\Exception $e){
+            throw new \Exception('update db error,condition is:' . json_encode($aWhere));
+        }
+        return $updateRowNum;
     }
 }

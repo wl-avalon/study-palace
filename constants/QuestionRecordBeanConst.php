@@ -11,5 +11,7 @@ namespace app\constants;
 
 class QuestionRecordBeanConst
 {
-
+    const RECORD_STATUS_WAIT_PROCESS    = 0;
+    const RECORD_STATUS_PROCESSING      = 1;
+    const RECORD_STATUS_PROCESS_DONE    = 2;
 }

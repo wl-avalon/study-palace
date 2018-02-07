@@ -7,6 +7,8 @@
  */
 namespace app\library;
 
+use app\components\SPLog;
+
 class Request
 {
     public static function curl($url){
@@ -17,5 +19,31 @@ class Request
         $content = curl_exec($ch);
         curl_close($ch);
         return $content;
+    }
+
+    public static function proxyCurl($url)
+    {
+        do{
+            $selfProxyIP     = Proxy::getSelfIP();
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, false);
+            curl_setopt($ch, CURLOPT_PROXY, $selfProxyIP);
+            curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    // 返回网页内容
+
+            $result = curl_exec($ch);
+            $httpCode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
+            if($httpCode != 200 || trim($result) == 'HTTP/1.1 400 Bad Request'){
+                Proxy::delSelfIP($selfProxyIP);
+                curl_close($ch);
+                continue;
+            }
+            curl_close($ch);
+        }while($httpCode != 200 || trim($result) == 'HTTP/1.1 400 Bad Request');
+        return $result;
     }
 }

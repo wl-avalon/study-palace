@@ -30,67 +30,67 @@ class CommonModel
 
     public static function getQuestionDb($dbName){
         switch($dbName){
-            case 'question_chinese':{
+            case '语文':{
                 if(is_null(self::$db_question_chinese)){
                     self::$db_question_chinese = \Yii::$app->db_question_chinese;
                 }
                 return self::$db_question_chinese;
             }
-            case 'question_math':{
+            case '数学':{
                 if(is_null(self::$db_question_math)){
                     self::$db_question_math = \Yii::$app->db_question_math;
                 }
                 return self::$db_question_math;
             }
-            case 'question_english':{
+            case '英语':{
                 if(is_null(self::$db_question_english)){
                     self::$db_question_english = \Yii::$app->db_question_english;
                 }
                 return self::$db_question_english;
             }
-            case 'question_physical':{
+            case '物理':{
                 if(is_null(self::$db_question_physical)){
                     self::$db_question_physical = \Yii::$app->db_question_physical;
                 }
                 return self::$db_question_physical;
             }
-            case 'question_chemistry':{
+            case '化学':{
                 if(is_null(self::$db_question_chemistry)){
                     self::$db_question_chemistry = \Yii::$app->db_question_chemistry;
                 }
                 return self::$db_question_chemistry;
             }
-            case 'question_biological':{
+            case '生物':{
                 if(is_null(self::$db_question_biological)){
                     self::$db_question_biological = \Yii::$app->db_question_biological;
                 }
                 return self::$db_question_biological;
             }
-            case 'question_political':{
+            case '政治':{
                 if(is_null(self::$db_question_political)){
                     self::$db_question_political = \Yii::$app->db_question_political;
                 }
                 return self::$db_question_political;
             }
-            case 'question_history':{
+            case '历史':{
                 if(is_null(self::$db_question_history)){
                     self::$db_question_history = \Yii::$app->db_question_history;
                 }
                 return self::$db_question_history;
             }
-            case 'question_geography':{
+            case '地理':{
                 if(is_null(self::$db_question_geography)){
                     self::$db_question_geography = \Yii::$app->db_question_geography;
                 }
                 return self::$db_question_geography;
             }
-            case 'question_common_technology':{
+            case '通用技术':{
                 if(is_null(self::$db_question_common_technology)){
                     self::$db_question_common_technology = \Yii::$app->db_question_common_technology;
                 }
                 return self::$db_question_common_technology;
             }
-            case 'question_internet_technology':{
+            case '信息技术':{
                 if(is_null(self::$db_question_internet_technology)){
                     self::$db_question_internet_technology = \Yii::$app->db_question_internet_technology;
                 }
