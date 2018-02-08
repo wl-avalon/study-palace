@@ -32,7 +32,9 @@ class MainController extends Controller
             $miPuIPList = array_unique($miPuIPList);
             $selfIPList = Proxy::getSelfProxyIPList($miPuIPList);
             SPLog::log('self ip list is:' . implode(',', $selfIPList));
-            $redis->sadd(RedisKey::SELF_PROXY_IP_LIST, $selfIPList);
+            foreach($selfIPList as $selfIP){
+                $redis->sadd(RedisKey::SELF_PROXY_IP_LIST, $selfIP);
+            }
             sleep(5);
         }
     }
