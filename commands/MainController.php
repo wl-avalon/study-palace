@@ -8,6 +8,7 @@
 
 namespace app\commands;
 use app\components\MockData;
+use app\components\SPLog;
 use app\constants\RedisKey;
 use app\library\Proxy;
 use app\services\daemon\spider\CreateQuestionService;
@@ -28,7 +29,9 @@ class MainController extends Controller
         $redis = RedisUtil::getInstance('redis');
         while(true){
             $miPuIPList = GetProxyIPListService::getMiPuIpList();
+            SPLog::log('IP List is:' . implode(',', $miPuIPList));
             $selfIPList = Proxy::getSelfProxyIPList($miPuIPList);
+            SPLog::log('self ip list is:' . implode(',', $selfIPList));
             $redis->sadd(RedisKey::SELF_PROXY_IP_LIST, $selfIPList);
             sleep(5);
         }
