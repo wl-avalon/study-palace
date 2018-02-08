@@ -29,7 +29,7 @@ class MainController extends Controller
         $redis = RedisUtil::getInstance('redis');
         while(true){
             $miPuIPList = GetProxyIPListService::getMiPuIpList();
-            SPLog::log('IP List is:' . implode(',', $miPuIPList));
+            $miPuIPList = array_unique($miPuIPList);
             $selfIPList = Proxy::getSelfProxyIPList($miPuIPList);
             SPLog::log('self ip list is:' . implode(',', $selfIPList));
             $redis->sadd(RedisKey::SELF_PROXY_IP_LIST, $selfIPList);
@@ -47,7 +47,9 @@ class MainController extends Controller
             $ipList     = array_merge($kuaiIPList, $yunIPList, $xiCiIPList);
             $ipList     = array_unique($ipList);
             $selfIPList = Proxy::getSelfProxyIPList($ipList);
-            $redis->sadd(RedisKey::SELF_PROXY_IP_LIST, $selfIPList);
+            foreach($selfIPList as $selfIP){
+                $redis->sadd(RedisKey::SELF_PROXY_IP_LIST, $selfIP);
+            }
             sleep(5);
         }
     }

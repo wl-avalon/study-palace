@@ -46,11 +46,11 @@ class Proxy
         SPLog::log("{$ipPort}请求失败,剩余" . count(self::$selfIpList));
     }
 
-    public static function getSelfProxyIPList($proxyIPList){
+    public static function getSelfProxyIPList($allIPList){
         $selfIPList = [];
-        while(count($proxyIPList) > 0){
+        while(count($allIPList) > 0){
             $mh = curl_multi_init();
-            $proxyIPList = array_splice($proxyIPList, 0, 200);
+            $proxyIPList = array_splice($allIPList, 0, 200);
             //1 设置请求线程的参数
             $chSet = [];
             foreach($proxyIPList as $proxyIP){
