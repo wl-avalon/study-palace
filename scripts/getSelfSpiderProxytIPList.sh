@@ -1,7 +1,7 @@
 #!/bash/bin
-phpCommand=/usr/local/bin/php
-spIndexPath=/Users/wzj-dev/Documents/source_code/study-palace/console/index.php
-spPath=/Users/wzj-dev/Documents/source_code/study-palace
+phpCommand=/usr/bin/php
+spIndexPath=/home/saber/webroot/study-palace/console/index.php
+spPath=/home/saber/webroot/study-palace
 spCommand=main/get-self-spider-proxy-ip-list
 
 ${phpCommand} ${spIndexPath} ${spCommand}

@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
-phpCommand=/usr/local/bin/php
-spIndexPath=/Users/wzj-dev/Documents/source_code/study-palace/console/index.php
-spPath=/Users/wzj-dev/Documents/source_code/study-palace
+#!/bash/bin
+phpCommand=/usr/bin/php
+spIndexPath=/home/saber/webroot/study-palace/console/index.php
+spPath=/home/saber/webroot/study-palace
 spCommand=main/index
 
 ${phpCommand} ${spIndexPath} ${spCommand} 语文 1 chinese >${spPath}/logs/chinese 2>&1 &
