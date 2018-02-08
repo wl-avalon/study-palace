@@ -21,4 +21,22 @@ class SPLog
         $test .= "\n";
         fwrite(self::$logFile, $test);
     }
+
+    public static function notice($test){
+        if(is_null(self::$logFile)){
+            $logFilePath = dirname(__DIR__) . "/logs/sp.log";
+            self::$logFile = fopen($logFilePath, 'a');
+        }
+        $test .= "\n";
+        fwrite(self::$logFile, $test);
+    }
+
+    public static function warning($test){
+        if(is_null(self::$logFile)){
+            $logFilePath = dirname(__DIR__) . "/logs/sp.log.wf";
+            self::$logFile = fopen($logFilePath, 'a');
+        }
+        $test .= "\n";
+        fwrite(self::$logFile, $test);
+    }
 }

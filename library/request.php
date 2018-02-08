@@ -21,10 +21,10 @@ class Request
         return $content;
     }
 
-    public static function proxyCurl($url)
+    public static function proxyCurl($url, $processIndex)
     {
         do{
-            $selfProxyIP     = Proxy::getSelfIP();
+            $selfProxyIP     = Proxy::getSelfIP($processIndex);
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, false);
@@ -37,13 +37,13 @@ class Request
 
             $result = curl_exec($ch);
             $httpCode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
-            if($httpCode != 200 || trim($result) == 'HTTP/1.1 400 Bad Request'){
+            if($httpCode != 200 || strpos($result, 'searchBox') === false){
                 Proxy::delSelfIP($selfProxyIP);
                 curl_close($ch);
                 continue;
             }
             curl_close($ch);
-        }while($httpCode != 200 || trim($result) == 'HTTP/1.1 400 Bad Request');
+        }while($httpCode != 200 || strpos($result, 'searchBox') === false);
         return $result;
     }
 }

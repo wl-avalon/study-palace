@@ -15,40 +15,42 @@ use app\services\daemon\spider\GetProxyIPListService;
 class Proxy
 {
     private static $selfIpList  = [];
+    private static $nowSelfIP   = "";
     private static $checkProxyIPOption = [
-        CURLOPT_URL             => 'www.91taoke.com',   //请求的网址
+        CURLOPT_URL             => 'www.baidu.com',     //请求的网址
         CURLOPT_HEADER          => 1,                   //返回http头信息
         CURLOPT_NOBODY          => 1,                   //不返回html的body
         CURLOPT_RETURNTRANSFER  => 1,                   //返回数据流,不直接输出
         CURLOPT_TIMEOUT         => 1,                   //超时时长,1秒
     ];
 
-    public static function getSelfIP(){
+    public static function getSelfIP($processIndex){
+        if(!empty(self::$nowSelfIP) && in_array(self::$nowSelfIP, self::$selfIpList)){
+            return self::$nowSelfIP;
+        }
         if(empty(self::$selfIpList)){
-            SPLog::log("开始获取可用的代理IP列表");
             do{
-                self::getSelfProxyIPList();
+                self::getSelfProxyIPList($processIndex);
             }while(empty(self::$selfIpList));
-            SPLog::log("可用的代理IP列表为:" . json_encode(self::$selfIpList));
-
+            SPLog::log("当前可用IP:" . implode(',', self::$selfIpList));
         }
         $maxIndex = count(self::$selfIpList) - 1;
         $index = rand(0, $maxIndex);
-        return self::$selfIpList[$index];
+        self::$nowSelfIP = self::$selfIpList[$index];
+        return self::$nowSelfIP;
     }
 
     public static function delSelfIP($ipPort){
-        SPLog::log("IP{$ipPort}请求失败,删除");
-        unset(self::$selfIpList[$ipPort]);
+        $key = array_search($ipPort, self::$selfIpList);
+        array_splice(self::$selfIpList, $key, 1);
+        SPLog::log("{$ipPort}请求失败,剩余" . count(self::$selfIpList));
     }
 
-    private static function getSelfProxyIPList(){
-        SPLog::log("开始获取代理IP列表");
-        $ipList = GetProxyIPListService::getProxyIPList();
-        SPLog::log("获取代理IP列表结束,列表为:" . implode(',', $ipList));
-        while(count($ipList) > 0){
+    public static function getSelfProxyIPList($proxyIPList){
+        $selfIPList = [];
+        while(count($proxyIPList) > 0){
             $mh = curl_multi_init();
-            $proxyIPList = array_splice($ipList, 0, 200);
+            $proxyIPList = array_splice($proxyIPList, 0, 200);
             //1 设置请求线程的参数
             $chSet = [];
             foreach($proxyIPList as $proxyIP){
@@ -78,9 +80,10 @@ class Proxy
                 if($requestCode != "200"){
                     continue;
                 }
-                self::$selfIpList[] = $ipPort;
+                $selfIPList[] = $ipPort;
             }
             curl_multi_close($mh);
         }
+        return $selfIPList;
     }
 }

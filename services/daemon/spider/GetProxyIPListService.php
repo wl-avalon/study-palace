@@ -14,13 +14,11 @@ use app\library\Request;
 
 class GetProxyIPListService
 {
-    public static function getProxyIPList(){
+    public static function getProxyIPList($daiLiName){
         $ipPortList = [];
         $i = 1;
-        $daiLiName = 'xi_ci';
-        while(count($ipPortList) <= 2000){
-            $html = self::getDaiLi($daiLiName, $i++);
-            $ipPortListTemp = self::getIPAndPort($daiLiName, $html);
+        while(count($ipPortList) < 1000){
+            $ipPortListTemp = self::getSpiderIPAndPort($daiLiName, $i++);
             $ipPortList     = array_merge($ipPortList, $ipPortListTemp);
             $ipPortList     = array_unique($ipPortList);
             sleep(1);
@@ -28,26 +26,8 @@ class GetProxyIPListService
         return $ipPortList;
     }
 
-    private static function getDaiLi($name, $i){
-        $url = "";
-        switch($name){
-            case 'kuai':{
-                $url = "https://www.kuaidaili.com/free/inha/{$i}/";
-                break;
-            }
-            case 'yun':{
-                $url = "http://www.ip3366.net/free/?stype=1&page={$i}";
-                break;
-            }
-            case 'xi_ci':{
-                $url = "http://www.xicidaili.com/nn/{$i}";
-                break;
-            }
-        }
-        return Request::curl($url);
-    }
-
-    private static function getIPAndPort($daiLiName, $html){
+    private static function getSpiderIPAndPort($daiLiName, $i){
+        $html = self::getDaiLi($daiLiName, $i);
         $temp = "";
         switch($daiLiName){
             case 'kuai':{
@@ -78,5 +58,37 @@ class GetProxyIPListService
             $ipPortList[]   = $ipPort;
         }
         return $ipPortList;
+    }
+
+    private static function getDaiLi($name, $i){
+        $url = "";
+        switch($name){
+            case 'kuai':{
+                $url = "https://www.kuaidaili.com/free/inha/{$i}/";
+                break;
+            }
+            case 'yun':{
+                $url = "http://www.ip3366.net/free/?stype=1&page={$i}";
+                break;
+            }
+            case 'xi_ci':{
+                $url = "http://www.xicidaili.com/nn/{$i}";
+                break;
+            }
+        }
+        return Request::curl($url);
+    }
+
+    public static function getMiPuIpList(){
+        $orderID = '861316112088054181';
+        $url = "https://proxyapi.mimvp.com/api/fetchopen.php?orderid={$orderID}&num=5000&http_type=1&anonymous=5&filter_hour=1&request_method=1&result_sort_field=4&result_format=json";
+        $response = Request::curl($url);
+        $response = json_decode($response, true);
+        if(isset($response['code']) || !is_array($response['result'])){
+            SPLog::warning($response['code_msg']);
+            return [];
+        }
+        $ipList = array_column($response['result'], 'ip:port');
+        return $ipList;
     }
 }

@@ -21,11 +21,14 @@ class CreateQuestionService
 {
     public static $baseQuestionUrl = "http://www.91taoke.com/Juanzi/ajaxlist";
 
-    public static function foreachQuestionList($allEnum){
+    public static function foreachQuestionList($allEnum, $subjectName, $processIndex){
         foreach($allEnum as $gradeKey => $xueKeData){
             $xueKeList      = $xueKeData['data'];
             foreach($xueKeList as $subjectKey => $banBenData){
                 $subjectChinese = $banBenData['value'];
+                if($subjectChinese != $subjectName){
+                    continue;
+                }
                 $banBenList     = $banBenData['data'];
                 foreach($banBenList as $versionKey => $moduleData){
                     $mokuaiList = $moduleData['data'];
@@ -37,7 +40,7 @@ class CreateQuestionService
                             $nodeID = $nodeItem['id'];
                             foreach($difficultyMap as $difficultyKey => $difficulty){
                                 foreach($questionTypeMap as $questionTypeKey => $questionType){
-                                    self::createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficultyKey, $questionTypeKey, $subjectChinese);
+                                    self::createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficultyKey, $questionTypeKey, $subjectChinese, $processIndex);
                                 }
                             }
                         }
@@ -47,14 +50,16 @@ class CreateQuestionService
         }
     }
 
-    private static function createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficulty, $questionType, $subjectChinese){
+    private static function createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficulty, $questionType, $subjectChinese, $processIndex){
         $p = 1;
+        $count = 0;
         do{
-            $url = self::$baseQuestionUrl . "?id={$gradeKey},{$subjectKey},{$versionKey},{$moduleKey}&zjid={$nodeID}&tixing={$questionType}&nandu={$difficulty}&p={$p}";$p++;
-            $questionList = self::getQuestion($url);
+            $url = self::$baseQuestionUrl . "?id={$gradeKey},{$subjectKey},{$versionKey},{$moduleKey}&zjid={$nodeID}&tixing={$questionType}&nandu={$difficulty}&leixing=0&xuekename={$subjectChinese}&p={$p}";$p++;
+            $questionList = self::getQuestion($url, $processIndex);
             if(empty($questionList)){
                 break;
             }
+            $count += count($questionList);
             foreach($questionList as $question){
                 $condition          = ['grade' => $gradeKey, 'subject' => $subjectKey, 'version' => $versionKey, 'module' => $moduleKey, 'node' => $nodeID, 'difficulty' => $difficulty, 'questionType' => $questionType];
                 $questionMd5        = Format::getQuestionMd5($question);
@@ -65,16 +70,18 @@ class CreateQuestionService
                         continue;
                     }
                 }
-                self::createNewQuestion($question, $condition, $subjectChinese);
+                do{
+                    $createResult = self::createNewQuestion($question, $condition, $subjectChinese);
+                }while(!$createResult);
             }
+            SPLog::log("{$url}");
             usleep(100000);
         }while(true);
     }
 
-    private static function getQuestion($url){
-        $response   = Request::proxyCurl($url);
+    private static function getQuestion($url, $processIndex){
+        $response   = Request::proxyCurl($url, $processIndex);
         $questList  = Format::getQuestInfo($response);
-
         $questionListRes = [];
         foreach($questList as $questInfo){
             $question   = Format::formatQuestionContent($questInfo['questionContent']);
@@ -134,7 +141,11 @@ class CreateQuestionService
     }
 
     private static function createNewQuestion($question, $condition, $subjectChinese){
-        $uuid = IDAllocApi::nextId()['data']['nextId'];
+        $response = IDAllocApi::nextId();
+        if(empty($response['data']['nextId'])){
+            return false;
+        }
+        $uuid = $response['data']['nextId'];
         $question['condition'] = $condition;
         $questionBeanData = [
             'uuid'                  => $uuid,
@@ -148,5 +159,6 @@ class CreateQuestionService
         $questionBean = new QuestionRecordBean($questionBeanData);
         QuestionRecordModel::insertOneRecord($questionBean, $subjectChinese);
         unset($questionBean);
+        return true;
     }
 }
