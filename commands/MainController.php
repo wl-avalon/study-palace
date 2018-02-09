@@ -11,6 +11,7 @@ use app\components\MockData;
 use app\components\SPLog;
 use app\constants\RedisKey;
 use app\library\Proxy;
+use app\services\daemon\process\CreateQuestionDetailService;
 use app\services\daemon\spider\CreateQuestionService;
 use app\services\daemon\spider\GetProxyIPListService;
 use rrxframework\util\RedisUtil;
@@ -54,6 +55,11 @@ class MainController extends Controller
             }
             sleep(5);
         }
+    }
+
+    public function actionCreateQuestionDetail($processName){
+        set_time_limit(0);
+        CreateQuestionDetailService::execute($processName);
     }
 }
 
