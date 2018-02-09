@@ -57,9 +57,9 @@ class MainController extends Controller
         }
     }
 
-    public function actionCreateQuestionDetail($processName){
+    public function actionCreateQuestionDetail($processName, $minID = 0){
         set_time_limit(0);
-        CreateQuestionDetailService::execute($processName);
+        CreateQuestionDetailService::execute($processName, $minID);
     }
 }
 

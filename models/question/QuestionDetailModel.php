@@ -32,7 +32,7 @@ class QuestionDetailModel
         try{
             $rowNum = CommonModel::getQuestionDb($dbName)->createCommand()->insert(self::TABLE_NAME, $aInsertData)->execute();
         }catch(\Exception $e){
-            throw new \Exception("insert db error, data is:" . json_encode($aInsertData));
+            throw new \Exception("insert db error, message is:" . $e->getMessage());
         }
         return $rowNum;
     }

@@ -18,8 +18,8 @@ use app\models\question\QuestionRecordModel;
 
 class CreateQuestionDetailService
 {
-    public static function execute($processName){
-        $id = 0;
+    public static function execute($processName, $minID){
+        $id = $minID;
         while(true){
             $questionRecordBeanList = QuestionRecordModel::queryWaitWorkToQuestionDetailRecordList($id, $processName);
             if(empty($questionRecordBeanList)){
@@ -85,7 +85,7 @@ class CreateQuestionDetailService
                     break;
                 }
                 default:{
-                    $questionDetailBeanData['difficulty'] = $questionInfo['result']['difficulty'];
+                    $questionDetailBeanData['difficulty'] = $condition['difficulty'];
                 }
             }
             $questionDetailBean = new QuestionDetailBean($questionDetailBeanData);
