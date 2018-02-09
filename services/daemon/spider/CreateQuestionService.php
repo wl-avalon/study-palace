@@ -21,7 +21,8 @@ class CreateQuestionService
 {
     public static $baseQuestionUrl = "http://www.91taoke.com/Juanzi/ajaxlist";
 
-    public static function foreachQuestionList($allEnum, $subjectName, $processIndex){
+    public static function foreachQuestionList($allEnum, $subjectName, $processIndex, $startNodeID){
+        $start = false;
         foreach($allEnum as $gradeKey => $xueKeData){
             $xueKeList      = $xueKeData['data'];
             foreach($xueKeList as $subjectKey => $banBenData){
@@ -38,6 +39,11 @@ class CreateQuestionService
                         $questionTypeMap    = $module['data']['tiXingMap'];
                         foreach($nodeList as $nodeItem){
                             $nodeID = $nodeItem['id'];
+                            if(!$start && $nodeID != $startNodeID){
+                                continue;
+                            }else{
+                                $start = true;
+                            }
                             foreach($difficultyMap as $difficultyKey => $difficulty){
                                 foreach($questionTypeMap as $questionTypeKey => $questionType){
                                     self::createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficultyKey, $questionTypeKey, $subjectChinese, $processIndex);

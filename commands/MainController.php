@@ -18,10 +18,10 @@ use yii\console\Controller;
 
 class MainController extends Controller
 {
-    public function actionIndex($subjectName, $processIndex){
+    public function actionIndex($subjectName, $processIndex, $startNodeID){
         set_time_limit(0);
         $record = MockData::getTestRecord();
-        CreateQuestionService::foreachQuestionList($record, $subjectName, $processIndex);
+        CreateQuestionService::foreachQuestionList($record, $subjectName, $processIndex, $startNodeID);
     }
 
     public function actionGetSelfProxyIpList(){
@@ -35,7 +35,7 @@ class MainController extends Controller
             foreach($selfIPList as $selfIP){
                 $redis->sadd(RedisKey::SELF_PROXY_IP_LIST, $selfIP);
             }
-            sleep(5);
+            sleep(60);
         }
     }
 

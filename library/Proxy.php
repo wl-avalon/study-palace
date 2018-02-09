@@ -10,11 +10,12 @@ namespace app\library;
 
 
 use app\components\SPLog;
+use app\constants\RedisKey;
 use app\services\daemon\spider\GetProxyIPListService;
+use rrxframework\util\RedisUtil;
 
 class Proxy
 {
-    private static $selfIpList  = [];
     private static $nowSelfIP   = "";
     private static $checkProxyIPOption = [
         CURLOPT_URL             => 'www.baidu.com',     //请求的网址
@@ -24,26 +25,26 @@ class Proxy
         CURLOPT_TIMEOUT         => 1,                   //超时时长,1秒
     ];
 
-    public static function getSelfIP($processIndex){
-        if(!empty(self::$nowSelfIP) && in_array(self::$nowSelfIP, self::$selfIpList)){
+    public static function getSelfIP(){
+        if(!empty(self::$nowSelfIP)){
             return self::$nowSelfIP;
         }
-        if(empty(self::$selfIpList)){
-            do{
-                self::getSelfProxyIPList($processIndex);
-            }while(empty(self::$selfIpList));
-            SPLog::log("当前可用IP:" . implode(',', self::$selfIpList));
-        }
-        $maxIndex = count(self::$selfIpList) - 1;
-        $index = rand(0, $maxIndex);
-        self::$nowSelfIP = self::$selfIpList[$index];
+        $redis = RedisUtil::getInstance('redis');
+        do{
+            $ip = $redis->SRANDMEMBER(RedisKey::SELF_PROXY_IP_LIST);
+            if(!empty($ip)){
+                self::$nowSelfIP = $ip;
+                break;
+            }
+            sleep(1);
+        }while(true);
         return self::$nowSelfIP;
     }
 
     public static function delSelfIP($ipPort){
-        $key = array_search($ipPort, self::$selfIpList);
-        array_splice(self::$selfIpList, $key, 1);
-        SPLog::log("{$ipPort}请求失败,剩余" . count(self::$selfIpList));
+        self::$nowSelfIP = "";
+        $redis = RedisUtil::getInstance('redis');
+        $redis->srem(RedisKey::SELF_PROXY_IP_LIST, $ipPort);
     }
 
     public static function getSelfProxyIPList($allIPList){
