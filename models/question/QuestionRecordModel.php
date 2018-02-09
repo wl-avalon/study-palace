@@ -7,6 +7,7 @@
  */
 
 namespace app\models\question;
+use app\constants\QuestionRecordBeanConst;
 use app\models\beans\QuestionRecordBean;
 
 class QuestionRecordModel
@@ -36,6 +37,7 @@ class QuestionRecordModel
     }
 
     /**
+     * 根据MD5查询内容相同的问题
      * @param $md5
      * @param $name
      * @return QuestionRecordBean[]
@@ -53,12 +55,86 @@ class QuestionRecordModel
         return self::convertDbToBeans($aData);
     }
 
+    /**
+     * 更新记录内容
+     * @param QuestionRecordBean $question
+     * @param $name
+     * @return mixed
+     * @throws \Exception
+     */
     public static function updateQuestionWorkContent(QuestionRecordBean $question, $name){
         $aWhere = [
             'id'    => $question->getID(),
         ];
         $aUpdate = [
             'work_content'  => $question->getWorkContent(),
+        ];
+        try{
+            $updateRowNum = CommonModel::getQuestionDb($name)->createCommand()->update(self::TABLE_NAME, $aUpdate, $aWhere)->execute();
+        }catch(\Exception $e){
+            throw new \Exception('update db error,condition is:' . json_encode($aWhere));
+        }
+        return $updateRowNum;
+    }
+
+    /**
+     * 查询仍未拆包的问题记录
+     * @param $minID
+     * @param $name
+     * @return QuestionRecordBean[]
+     * @throws \Exception
+     */
+    public static function queryWaitWorkToQuestionDetailRecordList($minID, $name){
+        $aWhere = [
+            'AND',
+            ['=', 'work_status', QuestionRecordBeanConst::RECORD_STATUS_WAIT_PROCESS],
+            ['>', 'id', $minID],
+        ];
+        try{
+            $aData = CommonModel::createSelectCommand(CommonModel::getQuestionDb($name), $aWhere, self::TABLE_NAME)->queryAll();
+        }catch(\Exception $e){
+            throw new \Exception('select db error,condition is:' . json_encode($aWhere));
+        }
+        return self::convertDbToBeans($aData);
+    }
+
+    /**
+     * 将记录置为处理中
+     * @param QuestionRecordBean $question
+     * @param $name
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateWorkStatusToProcessing(QuestionRecordBean $question, $name){
+        $aWhere = [
+            'id'            => $question->getID(),
+            'work_status'   => QuestionRecordBeanConst::RECORD_STATUS_WAIT_PROCESS,
+        ];
+        $aUpdate = [
+            'work_status'   => QuestionRecordBeanConst::RECORD_STATUS_PROCESSING,
+        ];
+        try{
+            $updateRowNum = CommonModel::getQuestionDb($name)->createCommand()->update(self::TABLE_NAME, $aUpdate, $aWhere)->execute();
+        }catch(\Exception $e){
+            throw new \Exception('update db error,condition is:' . json_encode($aWhere));
+        }
+        return $updateRowNum;
+    }
+
+    /**
+     * 将记录置为处理完
+     * @param QuestionRecordBean $question
+     * @param $name
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateWorkStatusToDone(QuestionRecordBean $question, $name){
+        $aWhere = [
+            'id'            => $question->getID(),
+            'work_status'   => QuestionRecordBeanConst::RECORD_STATUS_PROCESSING,
+        ];
+        $aUpdate = [
+            'work_status'   => QuestionRecordBeanConst::RECORD_STATUS_PROCESS_DONE,
         ];
         try{
             $updateRowNum = CommonModel::getQuestionDb($name)->createCommand()->update(self::TABLE_NAME, $aUpdate, $aWhere)->execute();

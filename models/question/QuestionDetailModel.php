@@ -30,7 +30,7 @@ class QuestionDetailModel
         $aInsertData = $questionDetailBean->toArray();
         $aInsertData = array_filter($aInsertData, function($item){return !is_null($item);});
         try{
-            $rowNum = CommonModel::getDb($dbName)->createCommand()->insert(self::TABLE_NAME, $aInsertData)->execute();
+            $rowNum = CommonModel::getQuestionDb($dbName)->createCommand()->insert(self::TABLE_NAME, $aInsertData)->execute();
         }catch(\Exception $e){
             throw new \Exception("insert db error, data is:" . json_encode($aInsertData));
         }
