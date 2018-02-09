@@ -21,7 +21,7 @@ class MainController extends Controller
     public function actionIndex($subjectName, $processIndex, $startNodeID){
         set_time_limit(0);
         $record = MockData::getTestRecord();
-        CreateQuestionService::foreachQuestionList($record, $subjectName, $processIndex, $startNodeID);
+        CreateQuestionService::foreachQuestionList($record, $subjectName, $startNodeID);
     }
 
     public function actionGetSelfProxyIpList(){

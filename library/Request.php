@@ -21,10 +21,10 @@ class Request
         return $content;
     }
 
-    public static function proxyCurl($url, $processIndex)
+    public static function proxyCurl($url)
     {
         do{
-            $selfProxyIP     = Proxy::getSelfIP($processIndex);
+            $selfProxyIP     = Proxy::getSelfIP();
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, false);

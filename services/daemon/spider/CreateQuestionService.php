@@ -21,7 +21,7 @@ class CreateQuestionService
 {
     public static $baseQuestionUrl = "http://www.91taoke.com/Juanzi/ajaxlist";
 
-    public static function foreachQuestionList($allEnum, $subjectName, $processIndex, $startNodeID){
+    public static function foreachQuestionList($allEnum, $subjectName, $startNodeID){
         $start = false;
         foreach($allEnum as $gradeKey => $xueKeData){
             $xueKeList      = $xueKeData['data'];
@@ -46,7 +46,7 @@ class CreateQuestionService
                             }
                             foreach($difficultyMap as $difficultyKey => $difficulty){
                                 foreach($questionTypeMap as $questionTypeKey => $questionType){
-                                    self::createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficultyKey, $questionTypeKey, $subjectChinese, $processIndex);
+                                    self::createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficultyKey, $questionTypeKey, $subjectChinese);
                                 }
                             }
                         }
@@ -56,12 +56,12 @@ class CreateQuestionService
         }
     }
 
-    private static function createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficulty, $questionType, $subjectChinese, $processIndex){
+    private static function createQuestionRecordList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeID, $difficulty, $questionType, $subjectChinese){
         $p = 1;
         $count = 0;
         do{
             $url = self::$baseQuestionUrl . "?id={$gradeKey},{$subjectKey},{$versionKey},{$moduleKey}&zjid={$nodeID}&tixing={$questionType}&nandu={$difficulty}&leixing=0&xuekename={$subjectChinese}&p={$p}";$p++;
-            $questionList = self::getQuestion($url, $processIndex);
+            $questionList = self::getQuestion($url);
             if(empty($questionList)){
                 break;
             }
@@ -78,6 +78,10 @@ class CreateQuestionService
                 }
                 do{
                     $createResult = self::createNewQuestion($question, $condition, $subjectChinese);
+                    if(!$createResult){
+                        SPLog::log($url . "插入数据库失败");
+                        usleep(100000);
+                    }
                 }while(!$createResult);
             }
             SPLog::log("{$url}");
@@ -85,8 +89,8 @@ class CreateQuestionService
         }while(true);
     }
 
-    private static function getQuestion($url, $processIndex){
-        $response   = Request::proxyCurl($url, $processIndex);
+    private static function getQuestion($url){
+        $response   = Request::proxyCurl($url);
         $questList  = Format::getQuestInfo($response);
         $questionListRes = [];
         foreach($questList as $questInfo){
