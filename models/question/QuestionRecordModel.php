@@ -91,7 +91,7 @@ class QuestionRecordModel
             ['>', 'id', $minID],
         ];
         try{
-            $aData = CommonModel::createSelectCommand(CommonModel::getQuestionDb($name), $aWhere, self::TABLE_NAME)->queryAll();
+            $aData = CommonModel::createSelectCommand(CommonModel::getQuestionDb($name), $aWhere, self::TABLE_NAME, [], 100)->queryAll();
         }catch(\Exception $e){
             throw new \Exception('select db error,condition is:' . json_encode($aWhere));
         }

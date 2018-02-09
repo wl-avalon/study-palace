@@ -128,13 +128,17 @@ class CommonModel
         }
     }
 
-    public static function createSelectCommand($db, $where, $tableName, $fields = []){
+    public static function createSelectCommand($db, $where, $tableName, $fields = [], $limit = 0){
         $whereCondition = [
             'AND',
             ['=', 'del_status', self::DEL_STATUS_NORMAL],
             $where,
         ];
-        $command = (new Query())->select($fields)->where($whereCondition)->from($tableName)->createCommand($db);
-        return $command;
+
+        $command = (new Query())->select($fields)->where($whereCondition)->from($tableName);
+        if(!empty($limit)){
+            $command->limit($limit);
+        }
+        return $command->createCommand($db);
     }
 }
