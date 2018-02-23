@@ -44,7 +44,7 @@ class QuestionDetailModel
      * @throws \Exception
      */
     public static function queryContainMathMlDetailList($minID, $name){
-        $aWhere = [
+        $where = [
             'AND',
             ['>', 'id', $minID],
             [
@@ -56,10 +56,27 @@ class QuestionDetailModel
             ['=', 'del_status', QuestionDetailBeanConst::DEL_STATUS_NORMAL]
         ];
         try{
-            $aData = (new Query())->select([])->from(self::TABLE_NAME)->where($aWhere)->limit(20)->orderBy('id')->createCommand(CommonModel::getQuestionDb($name))->queryAll();
+            $aData = (new Query())->select([])->from(self::TABLE_NAME)->where($where)->limit(20)->orderBy('id')->createCommand(CommonModel::getQuestionDb($name))->queryAll();
         }catch(\Exception $e){
-            throw new \Exception('select db error,condition is:' . json_encode($aWhere));
+            throw new \Exception('select db error,condition is:' . json_encode($where));
         }
         return self::convertDbToBeans($aData);
+    }
+
+    public static function updateDetailContentAndAnswerAndAnalysis(QuestionDetailBean $questionDetailBean, $name){
+        $where = [
+            'id' => $questionDetailBean->getID(),
+        ];
+        $update = [
+            'question_content'  => $questionDetailBean->getQuestionContent(),
+            'question_answer'   => $questionDetailBean->getQuestionAnswer(),
+            'question_analysis' =>$questionDetailBean->getQuestionAnalysis(),
+        ];
+        try{
+            $updateRowNum = CommonModel::getQuestionDb($name)->createCommand()->update(self::TABLE_NAME, $update, $where)->execute();
+        }catch(\Exception $e){
+            throw new \Exception('update db error,condition is:' . json_encode($where));
+        }
+        return $updateRowNum;
     }
 }
