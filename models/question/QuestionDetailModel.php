@@ -38,19 +38,20 @@ class QuestionDetailModel
     }
 
     /**
-     * @param $md5
+     * @param $minID
      * @param $name
      * @return QuestionDetailBean[]
      * @throws \Exception
      */
-    public static function queryQuestionListByMD5($md5, $name){
+    public static function queryContainMathMlDetailList($minID, $name){
         $aWhere = [
             'AND',
-            ['=', 'question_md5', $md5],
+            ['>', 'id', $minID],
+            ['like', 'question_content', '%math xmlns%'],
             ['=', 'del_status', QuestionDetailBeanConst::DEL_STATUS_NORMAL]
         ];
         try{
-            $aData = (new Query())->select([])->from(self::TABLE_NAME)->where($aWhere)->createCommand(CommonModel::getDb($name))->queryAll();
+            $aData = (new Query())->select([])->from(self::TABLE_NAME)->where($aWhere)->limit(20)->orderBy('id')->createCommand(CommonModel::getQuestionDb($name))->queryAll();
         }catch(\Exception $e){
             throw new \Exception('select db error,condition is:' . json_encode($aWhere));
         }

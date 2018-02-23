@@ -208,4 +208,12 @@ class Format
         $content = $question['questionRemark'] . $question['resultRemark'] . json_encode($question['questList']);
         return md5($content);
     }
+
+    public static function formatText($text){
+        $text = str_replace('<i>', '', $text);
+        $text = str_replace('</i>', '', $text);
+        $text = str_replace('<b>', '', $text);
+        $text = str_replace('</b>', '', $text);
+        return $text;
+    }
 }

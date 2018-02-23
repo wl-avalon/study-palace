@@ -64,32 +64,6 @@ class SpiderService
         return $record;
     }
 
-    public static function checkRetry($question, $xueKeChinese){
-        $content        = "";
-        $content        .= $question['questionRemark'];
-//        $content        .= $question['resultRemark']; //暂时没用
-        $questionList   = $question['questList'];
-
-        foreach($questionList as $questionItem){
-            $content .= $questionItem['question'];
-            foreach($questionItem['result'] as $key => $value){
-                $content .= "key:{$key},value{$value}";
-            }
-        }
-        $md5 = md5($content);
-        $dbName = QuestionDetailBeanConst::$subjectChineseMapToEnum[trim($xueKeChinese)];
-        $questionDetailBeanList = QuestionDetailModel::queryQuestionListByMD5($md5, $dbName);
-        if($questionDetailBeanList){
-            return true;
-        }
-
-        foreach($questionDetailBeanList as $questionDetailBean){
-            $contentTemp    = "";
-            $contentTemp    .= $questionDetailBean->getQuestionRemark();
-//            $contentTemp    .= $questionDetailBean->get,
-        }
-    }
-
     public static function createNodeList($gradeKey, $subjectKey, $versionKey, $moduleKey, $nodeList){
         if(count($nodeList) <= 0){
             return;
@@ -115,8 +89,4 @@ class SpiderService
             unset($nodeListBean);
         }
     }
-
-
 }
-
-//http://www.91taoke.com/Juanzi/ajaxlist?id=3%2C9%2C27%2C1000001&zjid=0&tixing=0&nandu=0&leixing=0

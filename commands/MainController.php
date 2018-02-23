@@ -61,6 +61,10 @@ class MainController extends Controller
         set_time_limit(0);
         CreateQuestionDetailService::execute($processName, $minID);
     }
+
+    public function actionTurnMathmlToPng(){
+
+    }
 }
 
 //        $startUrl   = "http://www.91taoke.com/Juanzi/index/d/1/id";
