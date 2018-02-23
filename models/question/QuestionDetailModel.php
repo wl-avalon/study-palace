@@ -47,7 +47,12 @@ class QuestionDetailModel
         $aWhere = [
             'AND',
             ['>', 'id', $minID],
-            ['like', 'question_content', '%math xmlns%'],
+            [
+                'OR',
+                ['like', 'question_content', '%math xmlns%', false],
+                ['like', 'question_answer', '%math xmlns%', false],
+                ['like', 'question_analysis', '%math xmlns%', false],
+            ],
             ['=', 'del_status', QuestionDetailBeanConst::DEL_STATUS_NORMAL]
         ];
         try{
