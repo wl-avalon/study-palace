@@ -48,13 +48,13 @@ class TurnMathmlToPngService
         $questionContent    = self::delMathMlTag($questionContent);
         $questionAnswer     = self::delMathMlTag($questionAnswer);
         $questionAnalysis   = self::delMathMlTag($questionAnalysis);
-        if(!empty($questionContent) || !empty($questionAnswer) || !empty($questionAnalysis)){
+        if(empty($questionContent) && empty($questionAnswer) && empty($questionAnalysis)){
+            return $questionDetailBean;
+        }else{
             $dirPath = PackageParams::IMAGE_DIR_PATH . "/" . $questionDetailBean->getUuid();
             if(!is_dir($dirPath)){
                 mkdir($dirPath);
             }
-        }else{
-            return $questionDetailBean;
         }
 
         foreach($contentMathMlList as $index => $contentMathMl){
@@ -67,7 +67,7 @@ class TurnMathmlToPngService
 
         foreach($answerMathMlList as $index => $contentMathMl){
             $mathMlFileName = PackageParams::getAnswerMathMlFileName($dirPath, $index);
-            $pngFileName    = PackageParams::getContentPNGFileName($dirPath, $index);
+            $pngFileName    = PackageParams::getAnswerPNGFileName($dirPath, $index);
             self::createMathMlFile($mathMlFileName, $contentMathMl);
             self::createPngFile($mathMlFileName, $pngFileName);
             unlink($mathMlFileName);
@@ -75,7 +75,7 @@ class TurnMathmlToPngService
 
         foreach($analysisMathMlList as $index => $contentMathMl){
             $mathMlFileName = PackageParams::getAnalysisMathMlFileName($dirPath, $index);
-            $pngFileName    = PackageParams::getContentPNGFileName($dirPath, $index);
+            $pngFileName    = PackageParams::getAnalysisPNGFileName($dirPath, $index);
             self::createMathMlFile($mathMlFileName, $contentMathMl);
             self::createPngFile($mathMlFileName, $pngFileName);
             unlink($mathMlFileName);
@@ -88,19 +88,19 @@ class TurnMathmlToPngService
 
     private static function getMathMlTagList($text){
         $matchArr = [];
-        preg_match_all('/(<math xmlns*?>[\s\S]*?</math>)/', $text, $matchArr);
+        preg_match_all('/(<math xmlns[^>]*?>[\s\S]*?<\/math>)/', $text, $matchArr);
         $resultData = $matchArr[1];
         return $resultData;
     }
 
     private static function delMathMlTag($text){
-        $text = preg_replace('/(<math xmlns*?>[\s\S]*?</math>)/', '{math-ml-image}', $text);
+        $text = preg_replace('/(<math xmlns[^>]*?>[\s\S]*?<\/math>)/', '{math-ml-image}', $text);
         return $text;
     }
 
     private static function createMathMlFile($fileName, $contentMathMl){
         $file = fopen($fileName, 'w');
-        fwrite($fileName, $contentMathMl);
+        fwrite($file, $contentMathMl);
         fclose($file);
     }
 
