@@ -1,7 +1,6 @@
 #PhpStorm
 .idea*
-ploanframework/
-rrxframework/
+modules/
 logs/
 test
 mock_data
