@@ -1,6 +1,8 @@
 #PhpStorm
 .idea*
-modules/
+question-spider/
+question-ui/
+sp_framework/
 logs/
 test
 mock_data
