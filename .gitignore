@@ -2,6 +2,7 @@
 .idea*
 question-spider/
 question-ui/
+school-admin
 sp_framework/
 logs/
 test
